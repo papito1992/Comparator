@@ -9,8 +9,6 @@ class Comparator {
         PrimitiveIterator.OfLong generatorA = createGenerator(seedA, 16807, 2147483647);
         PrimitiveIterator.OfLong generatorB = createGenerator(seedB, 48271,2147483647);
 
-        System.out.println(String.format("Comparing %s with %s", seedA, seedB));
-
         return Stream.generate(() -> new long[]{generatorA.nextLong(), generatorB.nextLong()})
                 .limit(1000000)
                 .filter(ll -> ((ll[0] ^ ll[1]) & MASK) == 0)
